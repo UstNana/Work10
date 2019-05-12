@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-tree = ET.parse("filexml.xml")
+tree = ET.parse("newsafr.xml")
 items = tree.findall("channel/item")
 print(len(items))
 for item in items:
