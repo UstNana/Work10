@@ -1,6 +1,7 @@
   import json
 
 d = {}
+n = {}
 descript = []
 new_list = list
 r = 0
@@ -16,5 +17,9 @@ with open("news.json", encoding="utf8") as json_file:
             else:
               d[word] += 1
 
-print(sorted(d.items(), key=lambda x: (len(x[0]), x[1]), reverse=True ))
-print(sorted(d.items(), key=lambda x: x[1], reverse=True ))
+for key, value in d.items():
+    if len(key) >= 6:
+      n[key] = value
+      k = sorted(n.items(), key=lambda x: x[1], reverse=True )
+      if len(k) <= 10:
+        print(k)
