@@ -1,19 +1,22 @@
 import xml.etree.ElementTree as ET
 
-tree = ET.parse("newsafr.xml")
+frequency = {}
+n = {}
+tree = ET.parse("filexml.xml")
 items = tree.findall("channel/item")
 print(len(items))
 for item in items:
   list_xml = []
   list_xml = item.find("description").text
-  print(list_xml)
-  for element in list_xml:
-    frequency = {}
-    count = frequency.get(element,0)
-    frequency[element] = count + 1
-    print(frequency)
-frequency_list = frequency.keys()
-for element in frequency_list:
-  if len(element) > len(shortest):
-    shortest = element
-    print (element, frequency[element])
+  for word in list_xml.split():
+    if word not in frequency.keys():
+      frequency[word] = 1
+    else:
+      frequency[word] += 1
+
+for key, value in frequency.items():
+    if len(key) >= 6:
+      n[key] = value
+      k = sorted(n.items(), key=lambda x: x[1], reverse=True )
+      if len(k) <= 10:
+        print(k)
