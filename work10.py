@@ -23,4 +23,4 @@ with open("news.json", encoding="utf8") as json_file:
 for key, value in d.items():
       n[key] = value
       k = sorted(n.items(), key=lambda x: x[1], reverse=True )
-      print(k)
+      print (k[0:10])
