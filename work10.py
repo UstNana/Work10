@@ -1,4 +1,5 @@
-  import json
+# -*- coding: utf-8 -*-
+import json
 
 d = {}
 n = {}
@@ -9,17 +10,17 @@ with open("news.json", encoding="utf8") as json_file:
       data_json = json.load(json_file)
       tems = data_json["rss"]["channel"]["items"]
       for elements in tems:
-          descript = elements["description"]
-
-          for word in descript.split():
-            if word not in d.keys():
-              d[word] = 1
-            else:
-              d[word] += 1
-
+        descript = elements["description"]
+        t = {i.casefold() for i in descript.split()}
+        for word in descript.split():
+          if len(word) >= 6:
+            if word.casefold() in t:
+              if word in d.keys():
+                d[word.casefold()] += 1
+              else:
+                d[word.casefold()] = 1
+             
 for key, value in d.items():
-    if len(key) >= 6:
       n[key] = value
       k = sorted(n.items(), key=lambda x: x[1], reverse=True )
-      if len(k) <= 10:
-        print(k)
+      print(k)
