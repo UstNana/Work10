@@ -20,7 +20,6 @@ with open("news.json", encoding="utf8") as json_file:
               else:
                 d[word.casefold()] = 1
              
-for key, value in d.items():
-      n[key] = value
-      k = sorted(n.items(), key=lambda x: x[1], reverse=True )
-      print (k[0:10])
+d_sort = sorted(d.items(), key=lambda x: x[1], reverse=True)
+d_sort_list = [k[0] for k in d_sort]
+print (d_sort_list[0:10])
